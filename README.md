@@ -14,7 +14,7 @@ terminal-bench-core 0.1.1 (50 tasks, 3 attempts each), matched 420s agent timeou
 | pass@3 | 28/50 (56.0%) | 29/50 (58.0%) | +1 net |
 | Wall clock | 132.3 min | 71.0 min | **1.86x faster** |
 | Throughput | 93.0 tok/s | 187.9 tok/s | **2.02x** |
-| Draft acceptance | n/a | 86.8% | — |
+| Draft acceptance | n/a | 86.8% | n/a |
 
 **Main Results**: the speedup mostly converts `agent_timeout` failures (43→9) into `unknown_agent_error` failures (4→24) rather than into successes. Faster generation gives the agent more time to attempt the more difficult tasks, most of which it still ends up getting wrong for unrelated reasons. Full methodology, caveats, and failure-mode breakdown in `results/final_run/COMPARISON.md`.
 
@@ -22,7 +22,7 @@ terminal-bench-core 0.1.1 (50 tasks, 3 attempts each), matched 420s agent timeou
 
 Extended the above to compare MTP against two third-party speculative-decoding methods with larger draft blocks: [DFlash2](https://huggingface.co/incoai/Qwen3.8-27B-DFlash2) and [DSpark](https://huggingface.co/RadixArk/Qwen3.8-27B-DSpark) (`num_speculative_tokens=7` each, vs. MTP's 3), same task set, same matched timeouts and sampling.
 
-**Main finding**: this looks like a domain-mismatch problem more than a sampling-mode difference. DFlash2's and DSpark's published benchmarks (the DFlash paper, arxiv 2602.06036, and the DFlash2 model card) report acceptance rate only on GSM8K, MATH, HumanEval, MBPP, and MT-Bench — short, single-or-few-turn completions. Neither covers agentic, tool-use, or terminal/shell-command workloads, and there's no equivalent published benchmark for DSpark at all. On the long multi-turn agentic rollouts tested here — dense with shell commands, file paths, and strict tool-call JSON, a token distribution these draft models were never trained or tuned against — draft acceptance came in well below MTP's: 86.3% (MTP) vs. 61.6% (DFlash2) vs. 57.5% (DSpark). Speculative-decoding gains reported on math and single-function-code benchmarks shouldn't be assumed to carry over to agentic RL rollouts without checking acceptance rate on the actual target workload first.
+**Main finding**: this looks like a domain mismatch more than a sampling-mode difference. DFlash2 and DSpark's published benchmarks (the DFlash paper, arxiv 2602.06036, and the DFlash2 model card) only report acceptance rate on GSM8K, MATH, HumanEval, MBPP, and MT-Bench: short, single or few-turn completions. Neither covers agentic, tool-use, or terminal/shell-command workloads, and there's no published benchmark for DSpark at all. The rollouts tested here are long multi-turn agent sessions full of shell commands, file paths, and strict tool-call JSON, a token distribution these draft models were never trained or tuned on. Draft acceptance came in well below MTP's: 86.3% for MTP, 61.6% for DFlash2, 57.5% for DSpark. If a speculative-decoding method's published gains come from math or single-function-code benchmarks, check its acceptance rate on your actual workload before trusting those numbers.
 
 | Metric | mtp_on (nst=3) | dflash2_on (nst=7) | dspark_on (nst=7) |
 |---|--:|--:|--:|
@@ -30,18 +30,18 @@ Extended the above to compare MTP against two third-party speculative-decoding m
 | Throughput | 183.9 tok/s | 171.4 tok/s | 165.4 tok/s |
 | Wall clock | 74.4 min | 79.3 min | 83.2 min |
 
-These numbers come straight from vLLM's own request metrics, so they hold up regardless of the caveat below. Despite similar-or-higher peak per-token generation rates in isolation, DFlash2's and DSpark's much lower acceptance meant more verification rounds went to waste — both ended up slower end-to-end than MTP. Bigger draft blocks didn't translate into a speed win here.
+These come straight from vLLM's own request metrics, so they hold up regardless of the caveat below. DFlash2 and DSpark had similar or higher peak per-token generation rates on their own, but their lower acceptance meant more verification rounds went to waste, so both ended up slower end to end than MTP. Bigger draft blocks didn't win on speed here.
 
-The accuracy side is a different story. dflash2_on and dspark_on hit a sandbox test-infrastructure failure (`test_timeout`, unrelated to the LLM itself) far more often than mtp_on did, which closes most of the measured resolved-trials/pass@3 gap in the worst case. This was investigated at length, including a fresh-pod rerun of both conditions to check whether it was a pod-age artifact — it wasn't, and CPU contention from the draft models was ruled out too. The leading explanation now is congestion tied to time-of-day, backed by solid evidence but not independently confirmed. Bottom line: don't read the resolved-trials/pass@3 numbers for dflash2_on or dspark_on as a confident accuracy comparison against mtp_on yet. Full writeup, including the rerun: `results/3way_run/COMPARISON.md`.
+The accuracy comparison is murkier. dflash2_on and dspark_on hit a sandbox test-infrastructure failure (`test_timeout`, unrelated to the LLM itself) far more often than mtp_on, and in the worst case that closes most of the measured resolved-trials/pass@3 gap. This got checked thoroughly, including a fresh-pod rerun of both conditions to rule out pod age as the cause. It wasn't pod age, and it wasn't CPU contention from the draft models either. The best explanation right now is congestion tied to time of day, backed by solid evidence but not independently confirmed. Don't read the resolved-trials/pass@3 numbers for dflash2_on or dspark_on as a confident accuracy comparison against mtp_on yet. Full writeup, including the rerun, is in `results/3way_run/COMPARISON.md`.
 
 ## Acknowledgments
 
-- [vLLM](https://github.com/vllm-project/vllm) — inference serving
-- [terminal-bench](https://github.com/laude-institute/terminal-bench) — the benchmark harness
-- [GEPA](https://github.com/gepa-ai/gepa) — the `TerminusAdapter` used to wire the agent to vLLM
-- Qwen / Alibaba — the base model
-- [Prime Intellect](https://primeintellect.ai) — GPU pod infrastructure
-- [Claude Code](https://claude.com/claude-code) (Anthropic) — used extensively for infrastructure setup/debugging and the terminal-bench integration
+- [vLLM](https://github.com/vllm-project/vllm): inference serving
+- [terminal-bench](https://github.com/laude-institute/terminal-bench): the benchmark harness
+- [GEPA](https://github.com/gepa-ai/gepa): the `TerminusAdapter` used to wire the agent to vLLM
+- Qwen / Alibaba: the base model
+- [Prime Intellect](https://primeintellect.ai): GPU pod infrastructure
+- [Claude Code](https://claude.com/claude-code) (Anthropic): used extensively for infrastructure setup and debugging, plus the terminal-bench integration
 
 ## License
 

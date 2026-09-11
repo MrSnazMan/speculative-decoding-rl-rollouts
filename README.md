@@ -16,7 +16,7 @@ terminal-bench-core 0.1.1 (50 tasks, 3 attempts each), matched 420s agent timeou
 | Throughput | 93.0 tok/s | 187.9 tok/s | **2.02x** |
 | Draft acceptance | n/a | 86.8% | — |
 
-**Key finding**: the speedup mostly converts `agent_timeout` failures (43→9) into `unknown_agent_error` failures (4→24) rather than into successes. Faster generation gives the agent more time to attempt genuinely hard tasks, most of which it still gets wrong for unrelated reasons. Full methodology, caveats, and failure-mode breakdown in `results/final_run/COMPARISON.md`.
+**Main Results**: the speedup mostly converts `agent_timeout` failures (43→9) into `unknown_agent_error` failures (4→24) rather than into successes. Faster generation gives the agent more time to attempt the more difficult tasks, most of which it still ends up getting wrong for unrelated reasons. Full methodology, caveats, and failure-mode breakdown in `results/final_run/COMPARISON.md`.
 
 ## Acknowledgments
 

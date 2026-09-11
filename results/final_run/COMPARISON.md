@@ -53,15 +53,38 @@ successes.
 
 `agent_timeout` dropped sharply (fewer tasks burn the full 420s budget when
 generation is ~2x faster) but `unknown_agent_error` rose by roughly the same
-amount. Spot-checked one instance (`gpt2-codegolf`): not LLM degeneration --
-the agent's generated C code segfaulted at runtime and the session ended
-without terminal-bench's clean "done" signal, a legitimate task failure. A
-full manual scan of every `unknown_agent_error` trial was not done; this
-spot-check is consistent with "faster generation gives agents more attempts
-at genuinely hard tasks, most of which they still get wrong," not with a new
-nst=3-induced failure mode. Zero `OutputLengthExceededError` / runaway
-generation occurred in either condition -- the max_tokens cap and corrected
-sampling held throughout.
+amount. Read full trajectories (agent-logs + tb's own session logs) for 3 of
+the 24 mtp_on `unknown_agent_error` trials -- `gpt2-codegolf`,
+`chess-best-move`, `path-tracing-reverse` -- and found two distinct
+mechanisms, not one:
+
+1. **Genuine bug, clean submission** (`gpt2-codegolf`): the agent finished and
+   submitted an answer, but its generated C code segfaulted at runtime, so the
+   session ended without terminal-bench's clean "done" signal. A legitimate
+   task failure, unrelated to MTP.
+2. **Ran out of runway mid-turn** (`chess-best-move`, `path-tracing-reverse`):
+   the agent was still doing sound, methodical work -- no hallucination, no
+   repetition, no garbage output -- when its turn budget ran out.
+   `chess-best-move` spent 41 turns manually reconstructing a chessboard from
+   raw pixel colors (no vision/chess library available), correctly
+   identifying pieces one square at a time via ASCII-art silhouettes, but
+   never finished identifying the position, let alone computing a move.
+   `path-tracing-reverse` spent 23 turns black-box probing then disassembling
+   a compiled raytracer binary, correctly identifying it as a raytracer and
+   hand-decoding several scene constants from raw hex bytes, but never
+   synthesized the C source it was asked to produce. Both trials' final turn
+   has **no parsed response at all** -- the session ended while a model call
+   was still in flight -- which is exactly why terminal-bench can't classify
+   these as a clean `agent_timeout` and instead buckets them as
+   `unknown_agent_error`.
+
+Neither mechanism shows MTP-induced degeneration. 3/24 is not an exhaustive
+audit, but it's enough to say the failure-mode shift reads as "faster
+generation gives agents more attempts at genuinely hard tasks, most of which
+they still fail for unrelated reasons (bugs, or running out of turns
+mid-analysis)," not a new nst=3-specific failure mode. Zero
+`OutputLengthExceededError` / runaway generation occurred in either condition
+-- the max_tokens cap and corrected sampling held throughout.
 
 ## Known caveats
 
@@ -71,8 +94,10 @@ sampling held throughout.
   is a terminal-bench task-infrastructure issue, symmetric across conditions,
   not an MTP or sampling effect -- but it means that task's resolved-rate
   numerator/denominator is noisier than the others.
-- `unknown_agent_error` causes were spot-checked (one instance), not
-  exhaustively audited across all 24 mtp_on occurrences.
+- `unknown_agent_error` causes: full trajectories examined for 3 of 24 mtp_on
+  occurrences (see the breakdown above), not exhaustively audited. The two
+  mechanisms found (crash after a clean submission; ran out of turns
+  mid-analysis on a hard task) may not cover every occurrence.
 - Single run per condition (n=1 at the run level; n_attempts=3 is the
   within-run repetition). No cross-run variance estimate.
 

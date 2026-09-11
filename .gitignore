@@ -1,0 +1,23 @@
+# raw per-trial run data (agent-logs, .cast recordings, full tb run trees) -
+# only the aggregate summary.json/summary.md and COMPARISON.md reports are
+# committed; everything else a run produces stays local
+results/**/runs/
+results/**/agent-logs/
+*.tgz
+*.tar.gz
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+
+# editors / OS
+.vscode/
+.idea/
+.DS_Store
+
+# secrets
+.env
+*.env
+secrets.env

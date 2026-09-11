@@ -1,0 +1,276 @@
+{
+  "condition": "mtp_on",
+  "model": "openai/Qwen/Qwen3.8-27B-FP8",
+  "run_status": "ok",
+  "n_concurrent": 8,
+  "global_agent_timeout_sec": 420.0,
+  "tb_hard_cap_sec": 6840.0,
+  "num_tasks": 50,
+  "num_success": 24,
+  "success_rate": 0.48,
+  "wall_clock_sec": 2646.512058019638,
+  "generated_tokens": 452589.0,
+  "tokens_per_sec": 171.01339048448108,
+  "metrics_before": {
+    "generation_tokens_total": 40.0,
+    "prompt_tokens_total": 65.0,
+    "request_success_total": 0.0
+  },
+  "metrics_after": {
+    "generation_tokens_total": 452629.0,
+    "prompt_tokens_total": 7500204.0,
+    "request_success_total": 635.0
+  },
+  "per_task": [
+    {
+      "task_id": "fix-permissions",
+      "success": true,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "crack-7z-hash",
+      "success": true,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "password-recovery",
+      "success": true,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "sqlite-with-gcov",
+      "success": true,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "polyglot-rust-c",
+      "success": false,
+      "failed_reason": "agent_timeout"
+    },
+    {
+      "task_id": "path-tracing",
+      "success": false,
+      "failed_reason": "agent_timeout"
+    },
+    {
+      "task_id": "get-bitcoin-nodes",
+      "success": false,
+      "failed_reason": "parse_error"
+    },
+    {
+      "task_id": "intrusion-detection",
+      "success": false,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "write-compressor",
+      "success": false,
+      "failed_reason": "agent_timeout"
+    },
+    {
+      "task_id": "solana-data",
+      "success": true,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "crack-7z-hash.easy",
+      "success": true,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "raman-fitting.easy",
+      "success": false,
+      "failed_reason": "agent_timeout"
+    },
+    {
+      "task_id": "tmux-advanced-workflow",
+      "success": true,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "raman-fitting",
+      "success": false,
+      "failed_reason": "agent_timeout"
+    },
+    {
+      "task_id": "polyglot-c-py",
+      "success": false,
+      "failed_reason": "agent_timeout"
+    },
+    {
+      "task_id": "cartpole-rl-training",
+      "success": true,
+      "failed_reason": "agent_timeout"
+    },
+    {
+      "task_id": "path-tracing-reverse",
+      "success": false,
+      "failed_reason": "unknown_agent_error"
+    },
+    {
+      "task_id": "sanitize-git-repo",
+      "success": true,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "create-bucket",
+      "success": true,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "openssl-selfsigned-cert",
+      "success": true,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "heterogeneous-dates",
+      "success": true,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "crack-7z-hash.hard",
+      "success": true,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "build-tcc-qemu",
+      "success": false,
+      "failed_reason": "unknown_agent_error"
+    },
+    {
+      "task_id": "fibonacci-server",
+      "success": false,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "jupyter-notebook-server",
+      "success": false,
+      "failed_reason": "agent_timeout"
+    },
+    {
+      "task_id": "extract-moves-from-video",
+      "success": false,
+      "failed_reason": "parse_error"
+    },
+    {
+      "task_id": "nginx-request-logging",
+      "success": false,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "csv-to-parquet",
+      "success": false,
+      "failed_reason": "test_timeout"
+    },
+    {
+      "task_id": "fix-git",
+      "success": true,
+      "failed_reason": "agent_timeout"
+    },
+    {
+      "task_id": "prove-plus-comm",
+      "success": true,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "security-vulhub-minio",
+      "success": false,
+      "failed_reason": "parse_error"
+    },
+    {
+      "task_id": "chess-best-move",
+      "success": false,
+      "failed_reason": "agent_timeout"
+    },
+    {
+      "task_id": "swe-bench-langcodes",
+      "success": true,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "fix-pandas-version",
+      "success": true,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "reshard-c4-data",
+      "success": false,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "modernize-fortran-build",
+      "success": true,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "decommissioning-service-with-sensitive-data",
+      "success": true,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "simple-sheets-put",
+      "success": true,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "processing-pipeline",
+      "success": true,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "gpt2-codegolf",
+      "success": false,
+      "failed_reason": "agent_timeout"
+    },
+    {
+      "task_id": "sqlite-db-truncate",
+      "success": false,
+      "failed_reason": "agent_timeout"
+    },
+    {
+      "task_id": "build-initramfs-qemu",
+      "success": false,
+      "failed_reason": "parse_error"
+    },
+    {
+      "task_id": "hf-model-inference",
+      "success": false,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "new-encrypt-command",
+      "success": true,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "organization-json-generator",
+      "success": false,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "configure-git-webserver",
+      "success": false,
+      "failed_reason": "unknown_agent_error"
+    },
+    {
+      "task_id": "sanitize-git-repo.hard",
+      "success": false,
+      "failed_reason": "unknown_agent_error"
+    },
+    {
+      "task_id": "git-workflow-hack",
+      "success": true,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "extract-safely",
+      "success": true,
+      "failed_reason": "unset"
+    },
+    {
+      "task_id": "vim-terminal-task",
+      "success": false,
+      "failed_reason": "unset"
+    }
+  ]
+}

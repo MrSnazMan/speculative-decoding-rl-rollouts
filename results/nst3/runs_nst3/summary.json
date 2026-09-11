@@ -1,0 +1,76 @@
+{
+  "condition": "nst3",
+  "model": "openai/Qwen/Qwen3.8-27B-FP8",
+  "run_status": "ok",
+  "n_concurrent": 8,
+  "global_agent_timeout_sec": 600.0,
+  "tb_hard_cap_sec": 3600.0,
+  "num_tasks": 10,
+  "num_success": 1,
+  "success_rate": 0.1,
+  "wall_clock_sec": 1135.063750743866,
+  "generated_tokens": 130920.0,
+  "tokens_per_sec": 115.34153911108636,
+  "metrics_before": {
+    "generation_tokens_total": 36.0,
+    "prompt_tokens_total": 19.0,
+    "request_success_total": 1.0
+  },
+  "metrics_after": {
+    "generation_tokens_total": 130956.0,
+    "prompt_tokens_total": 3690350.0,
+    "request_success_total": 241.0
+  },
+  "per_task": [
+    {
+      "task_id": "security-vulhub-minio",
+      "success": false,
+      "failed_reason": "unknown_agent_error"
+    },
+    {
+      "task_id": "path-tracing",
+      "success": true,
+      "failed_reason": "unknown_agent_error"
+    },
+    {
+      "task_id": "path-tracing-reverse",
+      "success": false,
+      "failed_reason": "unknown_agent_error"
+    },
+    {
+      "task_id": "raman-fitting",
+      "success": false,
+      "failed_reason": "unknown_agent_error"
+    },
+    {
+      "task_id": "polyglot-c-py",
+      "success": false,
+      "failed_reason": "agent_timeout"
+    },
+    {
+      "task_id": "gpt2-codegolf",
+      "success": false,
+      "failed_reason": "unknown_agent_error"
+    },
+    {
+      "task_id": "chess-best-move",
+      "success": false,
+      "failed_reason": "unknown_agent_error"
+    },
+    {
+      "task_id": "get-bitcoin-nodes",
+      "success": false,
+      "failed_reason": "unknown_agent_error"
+    },
+    {
+      "task_id": "write-compressor",
+      "success": false,
+      "failed_reason": "unknown_agent_error"
+    },
+    {
+      "task_id": "build-tcc-qemu",
+      "success": false,
+      "failed_reason": "unset"
+    }
+  ]
+}

@@ -1,0 +1,800 @@
+{
+  "condition": "mtp_on",
+  "model": "openai/Qwen/Qwen3.8-27B-FP8",
+  "run_status": "ok",
+  "n_concurrent": 8,
+  "global_agent_timeout_sec": 420.0,
+  "tb_hard_cap_sec": 11368.0,
+  "wall_clock_sec": 4262.859467983246,
+  "generated_tokens": 800962.0,
+  "tokens_per_sec": 187.8931280788701,
+  "draft_tokens": 666617.0,
+  "accepted_draft_tokens": 578723.0,
+  "draft_acceptance_rate": 0.868149177113695,
+  "metrics_before": {
+    "generation_tokens_total": 8.0,
+    "prompt_tokens_total": 54.0,
+    "spec_decode_num_draft_tokens_total": 6.0,
+    "spec_decode_num_accepted_tokens_total": 6.0
+  },
+  "metrics_after": {
+    "generation_tokens_total": 800970.0,
+    "prompt_tokens_total": 20912289.0,
+    "spec_decode_num_draft_tokens_total": 666623.0,
+    "spec_decode_num_accepted_tokens_total": 578729.0
+  },
+  "run_dir": "runs/temp_gepa_run_20260911001859",
+  "tb_reported_accuracy": 0.47333333333333333,
+  "tb_start": "2026-09-11T00:19:05.315150+00:00",
+  "tb_end": "2026-09-11T01:30:00.850280+00:00",
+  "n_tasks": 50,
+  "n_attempts": 3,
+  "n_trials": 150,
+  "n_resolved_trials": 71,
+  "mean_accuracy": 0.47333333333333333,
+  "pass_any_tasks": 29,
+  "pass_any_rate": 0.58,
+  "per_task": [
+    {
+      "task_id": "fix-permissions",
+      "attempts": 3,
+      "n_resolved": 3,
+      "resolved_rate": 1.0,
+      "pass_any": true,
+      "outcomes": [
+        true,
+        true,
+        true
+      ],
+      "failure_modes": []
+    },
+    {
+      "task_id": "crack-7z-hash",
+      "attempts": 3,
+      "n_resolved": 3,
+      "resolved_rate": 1.0,
+      "pass_any": true,
+      "outcomes": [
+        true,
+        true,
+        true
+      ],
+      "failure_modes": []
+    },
+    {
+      "task_id": "password-recovery",
+      "attempts": 3,
+      "n_resolved": 1,
+      "resolved_rate": 0.3333333333333333,
+      "pass_any": true,
+      "outcomes": [
+        true,
+        false,
+        false
+      ],
+      "failure_modes": [
+        "unknown_agent_error",
+        "unknown_agent_error"
+      ]
+    },
+    {
+      "task_id": "sqlite-with-gcov",
+      "attempts": 3,
+      "n_resolved": 3,
+      "resolved_rate": 1.0,
+      "pass_any": true,
+      "outcomes": [
+        true,
+        true,
+        true
+      ],
+      "failure_modes": []
+    },
+    {
+      "task_id": "polyglot-rust-c",
+      "attempts": 3,
+      "n_resolved": 0,
+      "resolved_rate": 0.0,
+      "pass_any": false,
+      "outcomes": [
+        false,
+        false,
+        false
+      ],
+      "failure_modes": [
+        "unknown_agent_error",
+        "unknown_agent_error",
+        "unknown_agent_error"
+      ]
+    },
+    {
+      "task_id": "path-tracing",
+      "attempts": 3,
+      "n_resolved": 1,
+      "resolved_rate": 0.3333333333333333,
+      "pass_any": true,
+      "outcomes": [
+        false,
+        false,
+        true
+      ],
+      "failure_modes": [
+        "unknown_agent_error",
+        "unknown_agent_error"
+      ]
+    },
+    {
+      "task_id": "get-bitcoin-nodes",
+      "attempts": 3,
+      "n_resolved": 1,
+      "resolved_rate": 0.3333333333333333,
+      "pass_any": true,
+      "outcomes": [
+        true,
+        false,
+        false
+      ],
+      "failure_modes": [
+        "fatal_llm_parse_error",
+        "fatal_llm_parse_error"
+      ]
+    },
+    {
+      "task_id": "intrusion-detection",
+      "attempts": 3,
+      "n_resolved": 0,
+      "resolved_rate": 0.0,
+      "pass_any": false,
+      "outcomes": [
+        false,
+        false,
+        false
+      ],
+      "failure_modes": [
+        "unset",
+        "unset",
+        "unset"
+      ]
+    },
+    {
+      "task_id": "write-compressor",
+      "attempts": 3,
+      "n_resolved": 0,
+      "resolved_rate": 0.0,
+      "pass_any": false,
+      "outcomes": [
+        false,
+        false,
+        false
+      ],
+      "failure_modes": [
+        "unknown_agent_error",
+        "agent_timeout",
+        "agent_timeout"
+      ]
+    },
+    {
+      "task_id": "solana-data",
+      "attempts": 3,
+      "n_resolved": 0,
+      "resolved_rate": 0.0,
+      "pass_any": false,
+      "outcomes": [
+        false,
+        false,
+        false
+      ],
+      "failure_modes": [
+        "unset",
+        "unset",
+        "unknown_agent_error"
+      ]
+    },
+    {
+      "task_id": "crack-7z-hash.easy",
+      "attempts": 3,
+      "n_resolved": 3,
+      "resolved_rate": 1.0,
+      "pass_any": true,
+      "outcomes": [
+        true,
+        true,
+        true
+      ],
+      "failure_modes": []
+    },
+    {
+      "task_id": "raman-fitting.easy",
+      "attempts": 3,
+      "n_resolved": 0,
+      "resolved_rate": 0.0,
+      "pass_any": false,
+      "outcomes": [
+        false,
+        false,
+        false
+      ],
+      "failure_modes": [
+        "unset",
+        "unknown_agent_error",
+        "agent_timeout"
+      ]
+    },
+    {
+      "task_id": "tmux-advanced-workflow",
+      "attempts": 3,
+      "n_resolved": 3,
+      "resolved_rate": 1.0,
+      "pass_any": true,
+      "outcomes": [
+        true,
+        true,
+        true
+      ],
+      "failure_modes": []
+    },
+    {
+      "task_id": "raman-fitting",
+      "attempts": 3,
+      "n_resolved": 0,
+      "resolved_rate": 0.0,
+      "pass_any": false,
+      "outcomes": [
+        false,
+        false,
+        false
+      ],
+      "failure_modes": [
+        "unset",
+        "unknown_agent_error",
+        "unknown_agent_error"
+      ]
+    },
+    {
+      "task_id": "polyglot-c-py",
+      "attempts": 3,
+      "n_resolved": 0,
+      "resolved_rate": 0.0,
+      "pass_any": false,
+      "outcomes": [
+        false,
+        false,
+        false
+      ],
+      "failure_modes": [
+        "unknown_agent_error",
+        "unknown_agent_error",
+        "agent_timeout"
+      ]
+    },
+    {
+      "task_id": "cartpole-rl-training",
+      "attempts": 3,
+      "n_resolved": 0,
+      "resolved_rate": 0.0,
+      "pass_any": false,
+      "outcomes": [
+        false,
+        false,
+        false
+      ],
+      "failure_modes": [
+        "agent_timeout",
+        "parse_error",
+        "agent_timeout"
+      ]
+    },
+    {
+      "task_id": "path-tracing-reverse",
+      "attempts": 3,
+      "n_resolved": 0,
+      "resolved_rate": 0.0,
+      "pass_any": false,
+      "outcomes": [
+        false,
+        false,
+        false
+      ],
+      "failure_modes": [
+        "unknown_agent_error",
+        "unknown_agent_error",
+        "unknown_agent_error"
+      ]
+    },
+    {
+      "task_id": "sanitize-git-repo",
+      "attempts": 3,
+      "n_resolved": 3,
+      "resolved_rate": 1.0,
+      "pass_any": true,
+      "outcomes": [
+        true,
+        true,
+        true
+      ],
+      "failure_modes": []
+    },
+    {
+      "task_id": "create-bucket",
+      "attempts": 3,
+      "n_resolved": 3,
+      "resolved_rate": 1.0,
+      "pass_any": true,
+      "outcomes": [
+        true,
+        true,
+        true
+      ],
+      "failure_modes": []
+    },
+    {
+      "task_id": "openssl-selfsigned-cert",
+      "attempts": 3,
+      "n_resolved": 3,
+      "resolved_rate": 1.0,
+      "pass_any": true,
+      "outcomes": [
+        true,
+        true,
+        true
+      ],
+      "failure_modes": []
+    },
+    {
+      "task_id": "heterogeneous-dates",
+      "attempts": 3,
+      "n_resolved": 3,
+      "resolved_rate": 1.0,
+      "pass_any": true,
+      "outcomes": [
+        true,
+        true,
+        true
+      ],
+      "failure_modes": []
+    },
+    {
+      "task_id": "crack-7z-hash.hard",
+      "attempts": 3,
+      "n_resolved": 2,
+      "resolved_rate": 0.6666666666666666,
+      "pass_any": true,
+      "outcomes": [
+        true,
+        false,
+        true
+      ],
+      "failure_modes": [
+        "unset"
+      ]
+    },
+    {
+      "task_id": "build-tcc-qemu",
+      "attempts": 3,
+      "n_resolved": 2,
+      "resolved_rate": 0.6666666666666666,
+      "pass_any": true,
+      "outcomes": [
+        true,
+        true,
+        false
+      ],
+      "failure_modes": [
+        "unknown_agent_error"
+      ]
+    },
+    {
+      "task_id": "fibonacci-server",
+      "attempts": 3,
+      "n_resolved": 1,
+      "resolved_rate": 0.3333333333333333,
+      "pass_any": true,
+      "outcomes": [
+        false,
+        false,
+        true
+      ],
+      "failure_modes": [
+        "unset",
+        "unset"
+      ]
+    },
+    {
+      "task_id": "jupyter-notebook-server",
+      "attempts": 3,
+      "n_resolved": 0,
+      "resolved_rate": 0.0,
+      "pass_any": false,
+      "outcomes": [
+        false,
+        false,
+        false
+      ],
+      "failure_modes": [
+        "unset",
+        "unset",
+        "unset"
+      ]
+    },
+    {
+      "task_id": "extract-moves-from-video",
+      "attempts": 3,
+      "n_resolved": 0,
+      "resolved_rate": 0.0,
+      "pass_any": false,
+      "outcomes": [
+        false,
+        false,
+        false
+      ],
+      "failure_modes": [
+        "agent_timeout",
+        "parse_error",
+        "agent_timeout"
+      ]
+    },
+    {
+      "task_id": "nginx-request-logging",
+      "attempts": 3,
+      "n_resolved": 0,
+      "resolved_rate": 0.0,
+      "pass_any": false,
+      "outcomes": [
+        false,
+        false,
+        false
+      ],
+      "failure_modes": [
+        "unset",
+        "unset",
+        "unset"
+      ]
+    },
+    {
+      "task_id": "csv-to-parquet",
+      "attempts": 3,
+      "n_resolved": 3,
+      "resolved_rate": 1.0,
+      "pass_any": true,
+      "outcomes": [
+        true,
+        true,
+        true
+      ],
+      "failure_modes": []
+    },
+    {
+      "task_id": "fix-git",
+      "attempts": 3,
+      "n_resolved": 2,
+      "resolved_rate": 0.6666666666666666,
+      "pass_any": true,
+      "outcomes": [
+        true,
+        true,
+        false
+      ],
+      "failure_modes": [
+        "unset"
+      ]
+    },
+    {
+      "task_id": "prove-plus-comm",
+      "attempts": 3,
+      "n_resolved": 3,
+      "resolved_rate": 1.0,
+      "pass_any": true,
+      "outcomes": [
+        true,
+        true,
+        true
+      ],
+      "failure_modes": []
+    },
+    {
+      "task_id": "security-vulhub-minio",
+      "attempts": 3,
+      "n_resolved": 0,
+      "resolved_rate": 0.0,
+      "pass_any": false,
+      "outcomes": [
+        false,
+        false,
+        false
+      ],
+      "failure_modes": [
+        "unknown_agent_error",
+        "unknown_agent_error",
+        "unknown_agent_error"
+      ]
+    },
+    {
+      "task_id": "chess-best-move",
+      "attempts": 3,
+      "n_resolved": 0,
+      "resolved_rate": 0.0,
+      "pass_any": false,
+      "outcomes": [
+        false,
+        false,
+        false
+      ],
+      "failure_modes": [
+        "unset",
+        "unknown_agent_error",
+        "agent_timeout"
+      ]
+    },
+    {
+      "task_id": "swe-bench-langcodes",
+      "attempts": 3,
+      "n_resolved": 3,
+      "resolved_rate": 1.0,
+      "pass_any": true,
+      "outcomes": [
+        true,
+        true,
+        true
+      ],
+      "failure_modes": []
+    },
+    {
+      "task_id": "fix-pandas-version",
+      "attempts": 3,
+      "n_resolved": 3,
+      "resolved_rate": 1.0,
+      "pass_any": true,
+      "outcomes": [
+        true,
+        true,
+        true
+      ],
+      "failure_modes": []
+    },
+    {
+      "task_id": "reshard-c4-data",
+      "attempts": 3,
+      "n_resolved": 0,
+      "resolved_rate": 0.0,
+      "pass_any": false,
+      "outcomes": [
+        false,
+        false,
+        false
+      ],
+      "failure_modes": [
+        "unset",
+        "unset",
+        "unset"
+      ]
+    },
+    {
+      "task_id": "modernize-fortran-build",
+      "attempts": 3,
+      "n_resolved": 3,
+      "resolved_rate": 1.0,
+      "pass_any": true,
+      "outcomes": [
+        true,
+        true,
+        true
+      ],
+      "failure_modes": []
+    },
+    {
+      "task_id": "decommissioning-service-with-sensitive-data",
+      "attempts": 3,
+      "n_resolved": 0,
+      "resolved_rate": 0.0,
+      "pass_any": false,
+      "outcomes": [
+        false,
+        false,
+        false
+      ],
+      "failure_modes": [
+        "unset",
+        "unset",
+        "unset"
+      ]
+    },
+    {
+      "task_id": "simple-sheets-put",
+      "attempts": 3,
+      "n_resolved": 3,
+      "resolved_rate": 1.0,
+      "pass_any": true,
+      "outcomes": [
+        true,
+        true,
+        true
+      ],
+      "failure_modes": []
+    },
+    {
+      "task_id": "processing-pipeline",
+      "attempts": 3,
+      "n_resolved": 3,
+      "resolved_rate": 1.0,
+      "pass_any": true,
+      "outcomes": [
+        true,
+        true,
+        true
+      ],
+      "failure_modes": []
+    },
+    {
+      "task_id": "gpt2-codegolf",
+      "attempts": 3,
+      "n_resolved": 0,
+      "resolved_rate": 0.0,
+      "pass_any": false,
+      "outcomes": [
+        false,
+        false,
+        false
+      ],
+      "failure_modes": [
+        "fatal_llm_parse_error",
+        "unknown_agent_error",
+        "fatal_llm_parse_error"
+      ]
+    },
+    {
+      "task_id": "sqlite-db-truncate",
+      "attempts": 3,
+      "n_resolved": 2,
+      "resolved_rate": 0.6666666666666666,
+      "pass_any": true,
+      "outcomes": [
+        false,
+        true,
+        true
+      ],
+      "failure_modes": [
+        "unset"
+      ]
+    },
+    {
+      "task_id": "build-initramfs-qemu",
+      "attempts": 3,
+      "n_resolved": 0,
+      "resolved_rate": 0.0,
+      "pass_any": false,
+      "outcomes": [
+        false,
+        false,
+        false
+      ],
+      "failure_modes": [
+        "test_timeout",
+        "test_timeout",
+        "test_timeout"
+      ]
+    },
+    {
+      "task_id": "hf-model-inference",
+      "attempts": 3,
+      "n_resolved": 0,
+      "resolved_rate": 0.0,
+      "pass_any": false,
+      "outcomes": [
+        false,
+        false,
+        false
+      ],
+      "failure_modes": [
+        "unset",
+        "unset",
+        "unset"
+      ]
+    },
+    {
+      "task_id": "new-encrypt-command",
+      "attempts": 3,
+      "n_resolved": 2,
+      "resolved_rate": 0.6666666666666666,
+      "pass_any": true,
+      "outcomes": [
+        true,
+        false,
+        true
+      ],
+      "failure_modes": [
+        "unset"
+      ]
+    },
+    {
+      "task_id": "organization-json-generator",
+      "attempts": 3,
+      "n_resolved": 1,
+      "resolved_rate": 0.3333333333333333,
+      "pass_any": true,
+      "outcomes": [
+        true,
+        false,
+        false
+      ],
+      "failure_modes": [
+        "unset",
+        "unset"
+      ]
+    },
+    {
+      "task_id": "configure-git-webserver",
+      "attempts": 3,
+      "n_resolved": 0,
+      "resolved_rate": 0.0,
+      "pass_any": false,
+      "outcomes": [
+        false,
+        false,
+        false
+      ],
+      "failure_modes": [
+        "unset",
+        "unset",
+        "unset"
+      ]
+    },
+    {
+      "task_id": "sanitize-git-repo.hard",
+      "attempts": 3,
+      "n_resolved": 3,
+      "resolved_rate": 1.0,
+      "pass_any": true,
+      "outcomes": [
+        true,
+        true,
+        true
+      ],
+      "failure_modes": []
+    },
+    {
+      "task_id": "git-workflow-hack",
+      "attempts": 3,
+      "n_resolved": 2,
+      "resolved_rate": 0.6666666666666666,
+      "pass_any": true,
+      "outcomes": [
+        true,
+        true,
+        false
+      ],
+      "failure_modes": [
+        "unknown_agent_error"
+      ]
+    },
+    {
+      "task_id": "extract-safely",
+      "attempts": 3,
+      "n_resolved": 3,
+      "resolved_rate": 1.0,
+      "pass_any": true,
+      "outcomes": [
+        true,
+        true,
+        true
+      ],
+      "failure_modes": []
+    },
+    {
+      "task_id": "vim-terminal-task",
+      "attempts": 3,
+      "n_resolved": 0,
+      "resolved_rate": 0.0,
+      "pass_any": false,
+      "outcomes": [
+        false,
+        false,
+        false
+      ],
+      "failure_modes": [
+        "unset",
+        "unset",
+        "unset"
+      ]
+    }
+  ]
+}

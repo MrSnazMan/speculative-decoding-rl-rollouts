@@ -1,0 +1,10 @@
+security-vulhub-minio
+path-tracing
+path-tracing-reverse
+raman-fitting
+polyglot-c-py
+gpt2-codegolf
+chess-best-move
+get-bitcoin-nodes
+write-compressor
+build-tcc-qemu

@@ -1,0 +1,700 @@
+{
+  "condition": "mtp_off",
+  "model": "openai/Qwen/Qwen3.8-27B-FP8",
+  "note": "Rebuilt from raw tb results.json; run_condition.py was killed before it wrote its own summary (post-eval orphaned-agent retry loop hung the tb process). Eval itself completed cleanly.",
+  "vllm_config": "no --speculative-config; --enforce-eager --max-model-len 32768 --kv-cache-dtype fp8_e4m3 --gpu-memory-utilization 0.85",
+  "n_concurrent": 8,
+  "num_tasks": 50,
+  "num_resolved": 21,
+  "num_unresolved": 29,
+  "accuracy": 0.42,
+  "tb_reported_accuracy": 0.42,
+  "eval_wall_clock_sec": 3095.007139,
+  "eval_start": "2026-09-10T01:44:50.465064+00:00",
+  "eval_end": "2026-09-10T02:36:25.472203+00:00",
+  "total_input_tokens": 477001,
+  "total_output_tokens": 36392,
+  "unresolved_failure_modes": {
+    "unset": 6,
+    "agent_timeout": 15,
+    "parse_error": 7,
+    "unknown_agent_error": 1
+  },
+  "per_task": [
+    {
+      "task_id": "crack-7z-hash.hard",
+      "is_resolved": true,
+      "failure_mode": "agent_timeout",
+      "parser_results": {
+        "test_solution_file": "passed",
+        "test_solution_content": "passed"
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "agent_sec": 527.389426,
+      "trial_sec": 757.722874
+    },
+    {
+      "task_id": "git-workflow-hack",
+      "is_resolved": true,
+      "failure_mode": "agent_timeout",
+      "parser_results": {
+        "test_token_leak": "passed"
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "agent_sec": 648.939009,
+      "trial_sec": 680.06891
+    },
+    {
+      "task_id": "simple-sheets-put",
+      "is_resolved": true,
+      "failure_mode": "agent_timeout",
+      "parser_results": {
+        "test_spreadsheet_created": "passed",
+        "test_sheet_created": "passed",
+        "test_cells_created": "passed"
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "agent_sec": 493.122038,
+      "trial_sec": 529.331459
+    },
+    {
+      "task_id": "solana-data",
+      "is_resolved": true,
+      "failure_mode": "agent_timeout",
+      "parser_results": {
+        "test_status_endpoint": "passed",
+        "test_block_endpoint": "passed",
+        "test_account_endpoint": "passed",
+        "test_program_accounts_endpoint": "passed",
+        "test_transaction_endpoint_exists": "passed"
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "agent_sec": 660.11446,
+      "trial_sec": 692.110117
+    },
+    {
+      "task_id": "sqlite-db-truncate",
+      "is_resolved": true,
+      "failure_mode": "agent_timeout",
+      "parser_results": {
+        "test_json_data": "passed"
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "agent_sec": 490.54226,
+      "trial_sec": 525.993001
+    },
+    {
+      "task_id": "crack-7z-hash",
+      "is_resolved": true,
+      "failure_mode": "unset",
+      "parser_results": {
+        "test_solution_file": "passed",
+        "test_solution_content": "passed"
+      },
+      "total_input_tokens": 76135,
+      "total_output_tokens": 2216,
+      "agent_sec": 181.29419,
+      "trial_sec": 211.510035
+    },
+    {
+      "task_id": "crack-7z-hash.easy",
+      "is_resolved": true,
+      "failure_mode": "unset",
+      "parser_results": {
+        "test_solution_file": "passed",
+        "test_solution_content": "passed"
+      },
+      "total_input_tokens": 24731,
+      "total_output_tokens": 1211,
+      "agent_sec": 111.615029,
+      "trial_sec": 370.819845
+    },
+    {
+      "task_id": "create-bucket",
+      "is_resolved": true,
+      "failure_mode": "unset",
+      "parser_results": {
+        "test_bucket_exists": "passed",
+        "test_bucket_public_access": "passed"
+      },
+      "total_input_tokens": 22525,
+      "total_output_tokens": 1880,
+      "agent_sec": 169.014156,
+      "trial_sec": 195.406425
+    },
+    {
+      "task_id": "csv-to-parquet",
+      "is_resolved": true,
+      "failure_mode": "unset",
+      "parser_results": {
+        "test_parquet_exists": "passed",
+        "test_data_matches": "passed"
+      },
+      "total_input_tokens": 24615,
+      "total_output_tokens": 1261,
+      "agent_sec": 240.335252,
+      "trial_sec": 272.884297
+    },
+    {
+      "task_id": "extract-safely",
+      "is_resolved": true,
+      "failure_mode": "unset",
+      "parser_results": {
+        "test_system_logs_exists": "passed",
+        "test_no_sensitive_exposure": "passed",
+        "test_solution_found": "passed"
+      },
+      "total_input_tokens": 6273,
+      "total_output_tokens": 601,
+      "agent_sec": 43.192127,
+      "trial_sec": 126.565447
+    },
+    {
+      "task_id": "fibonacci-server",
+      "is_resolved": true,
+      "failure_mode": "unset",
+      "parser_results": {
+        "test_server_running": "passed",
+        "test_fibonacci_endpoint_small_numbers": "passed",
+        "test_fibonacci_large_number": "passed",
+        "test_negative_number": "passed",
+        "test_missing_parameter": "passed",
+        "test_non_integer_parameter": "passed"
+      },
+      "total_input_tokens": 9184,
+      "total_output_tokens": 1549,
+      "agent_sec": 108.604193,
+      "trial_sec": 143.168856
+    },
+    {
+      "task_id": "fix-pandas-version",
+      "is_resolved": true,
+      "failure_mode": "unset",
+      "parser_results": {
+        "test_pandas_version": "passed",
+        "test_load_and_process_data": "passed",
+        "test_analyze_customer_segments": "passed"
+      },
+      "total_input_tokens": 20417,
+      "total_output_tokens": 1696,
+      "agent_sec": 186.870569,
+      "trial_sec": 249.93427
+    },
+    {
+      "task_id": "fix-permissions",
+      "is_resolved": true,
+      "failure_mode": "unset",
+      "parser_results": {
+        "test_script_permissions": "passed"
+      },
+      "total_input_tokens": 3724,
+      "total_output_tokens": 495,
+      "agent_sec": 37.355909,
+      "trial_sec": 72.696854
+    },
+    {
+      "task_id": "heterogeneous-dates",
+      "is_resolved": true,
+      "failure_mode": "unset",
+      "parser_results": {
+        "test_avg_temp_file_exists": "passed",
+        "test_avg_temp_file_format": "passed",
+        "test_avg_temp_value": "passed"
+      },
+      "total_input_tokens": 7535,
+      "total_output_tokens": 1318,
+      "agent_sec": 109.425347,
+      "trial_sec": 163.033442
+    },
+    {
+      "task_id": "modernize-fortran-build",
+      "is_resolved": true,
+      "failure_mode": "unset",
+      "parser_results": {
+        "test_output_file_exists_and_content_is_correct": "passed",
+        "test_target_executable_was_created_and_is_executable": "passed",
+        "test_makefile_compilation_process": "passed"
+      },
+      "total_input_tokens": 28401,
+      "total_output_tokens": 2145,
+      "agent_sec": 148.297378,
+      "trial_sec": 212.148768
+    },
+    {
+      "task_id": "openssl-selfsigned-cert",
+      "is_resolved": true,
+      "failure_mode": "unset",
+      "parser_results": {
+        "test_directory_structure": "passed",
+        "test_key_file": "passed",
+        "test_certificate_file": "passed",
+        "test_combined_pem_file": "passed",
+        "test_verification_file": "passed",
+        "test_python_verification_script": "passed"
+      },
+      "total_input_tokens": 15068,
+      "total_output_tokens": 2916,
+      "agent_sec": 199.571007,
+      "trial_sec": 236.146123
+    },
+    {
+      "task_id": "organization-json-generator",
+      "is_resolved": true,
+      "failure_mode": "unset",
+      "parser_results": {
+        "test_json_file_exists": "passed",
+        "test_organization_structure": "passed",
+        "test_relationships_integrity": "passed",
+        "test_statistics_calculations": "passed"
+      },
+      "total_input_tokens": 55595,
+      "total_output_tokens": 3310,
+      "agent_sec": 223.069897,
+      "trial_sec": 258.247164
+    },
+    {
+      "task_id": "processing-pipeline",
+      "is_resolved": true,
+      "failure_mode": "unset",
+      "parser_results": {
+        "test_all_scripts_exist": "passed",
+        "test_all_scripts_executable": "passed",
+        "test_collect_data_readable": "passed",
+        "test_no_dos_line_endings": "passed",
+        "test_correct_shebang": "passed",
+        "test_output_directory_permissions": "passed",
+        "test_pipeline_execution": "passed",
+        "test_all_output_files_created": "passed",
+        "test_data_was_processed": "passed"
+      },
+      "total_input_tokens": 33061,
+      "total_output_tokens": 2595,
+      "agent_sec": 187.258099,
+      "trial_sec": 232.247366
+    },
+    {
+      "task_id": "prove-plus-comm",
+      "is_resolved": true,
+      "failure_mode": "unset",
+      "parser_results": {
+        "test_proof_file_exists": "passed",
+        "test_compiled_proof_exists": "passed",
+        "test_proof_contents": "passed",
+        "test_compiled_proof_content": "passed"
+      },
+      "total_input_tokens": 6567,
+      "total_output_tokens": 683,
+      "agent_sec": 49.022758,
+      "trial_sec": 83.698735
+    },
+    {
+      "task_id": "sqlite-with-gcov",
+      "is_resolved": true,
+      "failure_mode": "unset",
+      "parser_results": {
+        "test_sqlite_compiled": "passed",
+        "test_sqlite_in_path": "passed",
+        "test_gcov_enabled": "passed"
+      },
+      "total_input_tokens": 53661,
+      "total_output_tokens": 2590,
+      "agent_sec": 234.98885,
+      "trial_sec": 265.323142
+    },
+    {
+      "task_id": "swe-bench-langcodes",
+      "is_resolved": true,
+      "failure_mode": "unset",
+      "parser_results": {
+        "test__hash__": "passed"
+      },
+      "total_input_tokens": 8806,
+      "total_output_tokens": 1013,
+      "agent_sec": 81.872985,
+      "trial_sec": 177.990152
+    },
+    {
+      "task_id": "build-tcc-qemu",
+      "is_resolved": false,
+      "failure_mode": "agent_timeout",
+      "parser_results": {
+        "../tests/test_outputs.py - IndexError: list index out of range": "failed"
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "agent_sec": 660.13203,
+      "trial_sec": 939.100866
+    },
+    {
+      "task_id": "cartpole-rl-training",
+      "is_resolved": false,
+      "failure_mode": "agent_timeout",
+      "parser_results": {
+        "test_check_if_model_dir_exists": "failed",
+        "test_check_model_dir_size": "failed",
+        "test_check_agent_import": "failed",
+        "test_agent_save": "failed",
+        "test_check_model_performance": "failed"
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "agent_sec": 660.13881,
+      "trial_sec": 685.879161
+    },
+    {
+      "task_id": "extract-moves-from-video",
+      "is_resolved": false,
+      "failure_mode": "agent_timeout",
+      "parser_results": {
+        "test_solution_file_exists": "failed",
+        "test_solution_content_similarity": "failed"
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "agent_sec": 660.12435,
+      "trial_sec": 690.631667
+    },
+    {
+      "task_id": "gpt2-codegolf",
+      "is_resolved": false,
+      "failure_mode": "agent_timeout",
+      "parser_results": {
+        "test_gpt2_implementation": "failed"
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "agent_sec": 660.203019,
+      "trial_sec": 730.341125
+    },
+    {
+      "task_id": "jupyter-notebook-server",
+      "is_resolved": false,
+      "failure_mode": "agent_timeout",
+      "parser_results": {
+        "test_jupyter_server_running": "passed",
+        "test_sample_notebook_exists": "passed",
+        "test_jupyter_config_exists": "failed",
+        "test_password_authentication": "failed"
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "agent_sec": 365.896565,
+      "trial_sec": 408.374261
+    },
+    {
+      "task_id": "path-tracing",
+      "is_resolved": false,
+      "failure_mode": "agent_timeout",
+      "parser_results": {
+        "test_image_c_exists": "failed",
+        "test_image_compiles": "failed",
+        "test_runs_and_produces_output": "failed",
+        "test_image_similarity": "failed"
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "agent_sec": 510.61125,
+      "trial_sec": 539.109031
+    },
+    {
+      "task_id": "path-tracing-reverse",
+      "is_resolved": false,
+      "failure_mode": "agent_timeout",
+      "parser_results": {
+        "test_image_c_exists": "failed",
+        "test_image_compiles": "failed",
+        "test_image_similarity": "failed"
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "agent_sec": 551.745876,
+      "trial_sec": 639.683777
+    },
+    {
+      "task_id": "polyglot-c-py",
+      "is_resolved": false,
+      "failure_mode": "agent_timeout",
+      "parser_results": {
+        "test_fibonacci_polyglot": "failed"
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "agent_sec": 660.200332,
+      "trial_sec": 718.563992
+    },
+    {
+      "task_id": "polyglot-rust-c",
+      "is_resolved": false,
+      "failure_mode": "agent_timeout",
+      "parser_results": {
+        "test_fibonacci_polyglot": "failed"
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "agent_sec": 660.203285,
+      "trial_sec": 722.664826
+    },
+    {
+      "task_id": "raman-fitting",
+      "is_resolved": false,
+      "failure_mode": "agent_timeout",
+      "parser_results": {
+        "test_result_file_exists": "failed",
+        "test_G_Peak": "failed",
+        "test_2D_Peak": "failed"
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "agent_sec": 660.129188,
+      "trial_sec": 690.626405
+    },
+    {
+      "task_id": "raman-fitting.easy",
+      "is_resolved": false,
+      "failure_mode": "agent_timeout",
+      "parser_results": {
+        "test_result_file_exists": "passed",
+        "test_G_Peak": "failed",
+        "test_2D_Peak": "failed"
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "agent_sec": 660.113745,
+      "trial_sec": 690.864328
+    },
+    {
+      "task_id": "reshard-c4-data",
+      "is_resolved": false,
+      "failure_mode": "agent_timeout",
+      "parser_results": {
+        "test_reformat_success": "passed",
+        "test_revert": "failed"
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "agent_sec": 660.113366,
+      "trial_sec": 770.172543
+    },
+    {
+      "task_id": "sanitize-git-repo.hard",
+      "is_resolved": false,
+      "failure_mode": "agent_timeout",
+      "parser_results": {
+        "test_removal_of_secret_information": "passed",
+        "test_correct_replacement_of_secret_information": "passed",
+        "test_no_other_files_changed": "failed"
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "agent_sec": 646.713671,
+      "trial_sec": 672.796119
+    },
+    {
+      "task_id": "security-vulhub-minio",
+      "is_resolved": false,
+      "failure_mode": "agent_timeout",
+      "parser_results": {
+        "test_command_output_content": "failed"
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "agent_sec": 660.185003,
+      "trial_sec": 694.425671
+    },
+    {
+      "task_id": "write-compressor",
+      "is_resolved": false,
+      "failure_mode": "agent_timeout",
+      "parser_results": {
+        "test_compressed_file_exists": "failed",
+        "test_decompression_produces_original": "failed",
+        "test_compression_size": "failed"
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "agent_sec": 660.104501,
+      "trial_sec": 692.081129
+    },
+    {
+      "task_id": "build-initramfs-qemu",
+      "is_resolved": false,
+      "failure_mode": "parse_error",
+      "parser_results": null,
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "agent_sec": 660.131774,
+      "trial_sec": 741.343614
+    },
+    {
+      "task_id": "chess-best-move",
+      "is_resolved": false,
+      "failure_mode": "parse_error",
+      "parser_results": null,
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "agent_sec": 660.193963,
+      "trial_sec": 741.425328
+    },
+    {
+      "task_id": "configure-git-webserver",
+      "is_resolved": false,
+      "failure_mode": "parse_error",
+      "parser_results": null,
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "agent_sec": 660.106624,
+      "trial_sec": 716.944158
+    },
+    {
+      "task_id": "get-bitcoin-nodes",
+      "is_resolved": false,
+      "failure_mode": "parse_error",
+      "parser_results": null,
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "agent_sec": 660.164946,
+      "trial_sec": 684.485132
+    },
+    {
+      "task_id": "intrusion-detection",
+      "is_resolved": false,
+      "failure_mode": "parse_error",
+      "parser_results": null,
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "agent_sec": 660.205326,
+      "trial_sec": 695.081476
+    },
+    {
+      "task_id": "password-recovery",
+      "is_resolved": false,
+      "failure_mode": "parse_error",
+      "parser_results": null,
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "agent_sec": 660.090949,
+      "trial_sec": 708.350171
+    },
+    {
+      "task_id": "tmux-advanced-workflow",
+      "is_resolved": false,
+      "failure_mode": "parse_error",
+      "parser_results": null,
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "agent_sec": 660.081539,
+      "trial_sec": 717.728937
+    },
+    {
+      "task_id": "sanitize-git-repo",
+      "is_resolved": false,
+      "failure_mode": "unknown_agent_error",
+      "parser_results": {
+        "test_no_other_files_changed": "passed",
+        "test_removal_of_secret_information": "failed",
+        "test_correct_replacement_of_secret_information": "failed"
+      },
+      "total_input_tokens": null,
+      "total_output_tokens": null,
+      "agent_sec": 294.412409,
+      "trial_sec": 325.276152
+    },
+    {
+      "task_id": "decommissioning-service-with-sensitive-data",
+      "is_resolved": false,
+      "failure_mode": "unset",
+      "parser_results": {
+        "test_original_sensitive_data_is_gone": "passed",
+        "test_config_file_is_gone": "passed",
+        "test_pid_file_is_gone": "passed",
+        "test_encrypted_archive_exists": "passed",
+        "test_intermediate_unencrypted_archive_is_gone": "passed",
+        "test_archive_is_correctly_encrypted_and_contains_data": "failed"
+      },
+      "total_input_tokens": 19423,
+      "total_output_tokens": 1308,
+      "agent_sec": 92.088456,
+      "trial_sec": 133.384672
+    },
+    {
+      "task_id": "fix-git",
+      "is_resolved": false,
+      "failure_mode": "unset",
+      "parser_results": {
+        "test_layout_file": "passed",
+        "test_about_file": "failed"
+      },
+      "total_input_tokens": 18482,
+      "total_output_tokens": 1635,
+      "agent_sec": 133.47101,
+      "trial_sec": 166.951816
+    },
+    {
+      "task_id": "hf-model-inference",
+      "is_resolved": false,
+      "failure_mode": "unset",
+      "parser_results": {
+        "test_flask_api_running": "passed",
+        "test_sentiment_endpoint": "passed",
+        "test_api_error_handling": "passed",
+        "test_model_downloaded": "failed"
+      },
+      "total_input_tokens": 27729,
+      "total_output_tokens": 2709,
+      "agent_sec": 274.324285,
+      "trial_sec": 300.722646
+    },
+    {
+      "task_id": "new-encrypt-command",
+      "is_resolved": false,
+      "failure_mode": "unset",
+      "parser_results": {
+        "test_success": "failed"
+      },
+      "total_input_tokens": 13029,
+      "total_output_tokens": 2246,
+      "agent_sec": 154.706377,
+      "trial_sec": 192.105083
+    },
+    {
+      "task_id": "nginx-request-logging",
+      "is_resolved": false,
+      "failure_mode": "unset",
+      "parser_results": {
+        "test_nginx_installed": "passed",
+        "test_nginx_running": "passed",
+        "test_index_page_content": "passed",
+        "test_custom_404_page": "passed",
+        "test_nginx_config_syntax": "passed",
+        "test_log_file_creation": "passed",
+        "test_log_file_format": "passed",
+        "test_nginx_config_settings": "failed"
+      },
+      "total_input_tokens": 1064,
+      "total_output_tokens": 514,
+      "agent_sec": 41.332118,
+      "trial_sec": 74.328538
+    },
+    {
+      "task_id": "vim-terminal-task",
+      "is_resolved": false,
+      "failure_mode": "unset",
+      "parser_results": {
+        "test_python_script_exists": "passed",
+        "test_sample_text_exists": "passed",
+        "test_sample_text_content": "passed",
+        "test_python_script_executable": "failed",
+        "test_script_output": "failed"
+      },
+      "total_input_tokens": 976,
+      "total_output_tokens": 501,
+      "agent_sec": 34.717942,
+      "trial_sec": 72.798989
+    }
+  ]
+}

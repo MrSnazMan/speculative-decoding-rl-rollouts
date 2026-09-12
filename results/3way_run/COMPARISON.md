@@ -40,6 +40,7 @@ cannot be made with confidence for either dflash2_on or dspark_on.**
 | Resolved trials -- **see caveat above, accuracy not yet trustworthy** | **71/150 (47.3%)** | 47/150 (31.3%) | 39/150 (26.0%) |
 | pass@3 -- **same caveat** | **29/50 (58.0%)** | 18/50 (36.0%) | 17/50 (34.0%) |
 | Draft acceptance (trustworthy -- vLLM metrics, unaffected by the confound) | 86.3% (592,634/686,579) | 61.6% (644,223/1,045,044) | 57.5% (646,681/1,125,176) |
+| Mean acceptance length (trustworthy -- vLLM metrics, accepted-token-weighted across all periodic `SpecDecoding metrics` log snapshots; max possible = num_speculative_tokens+1) | 3.59 / 4 (441 snapshots) | 4.84 / 8 (459 snapshots) | 4.71 / 8 (462 snapshots) |
 | Throughput (trustworthy) | 183.9 tok/s | 171.4 tok/s | 165.4 tok/s |
 | Wall clock (trustworthy) | 74.4 min | 79.3 min | 83.2 min |
 | Draft tokens offered per accepted (rough) | ~1.16x | ~1.62x | ~1.74x |
@@ -50,6 +51,13 @@ translate into a speed win. Despite similar-or-higher peak per-token generation 
 isolation, the much lower acceptance rate meant more verification rounds went to waste,
 and *both* ended up with a *slower* end-to-end wall clock than MTP. This part of the
 result does not depend on the test_timeout confound and can be reported as-is.
+
+Mean acceptance length tells the same story from a different angle. DFlash2 and DSpark
+accept more tokens per round in absolute terms (4.84 and 4.71 vs. MTP's 3.59) simply
+because their draft blocks are longer, but as a fraction of what each method could
+possibly accept per round they're worse: 4.84/8 (60.5%) and 4.71/8 (58.9%) vs. MTP's
+3.59/4 (89.8%). The extra drafted tokens per round mostly go to waste rather than
+compounding into a real speedup, consistent with the draft acceptance rate gap above.
 
 Task-level movement vs. mtp_on (pass@3, subject to the same accuracy caveat):
 dflash2_on gained `new-encrypt-command` (1), regressed on 12 others (net -11).

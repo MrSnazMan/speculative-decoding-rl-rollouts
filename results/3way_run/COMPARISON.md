@@ -14,12 +14,12 @@ mtp_on -> dflash2_on -> dspark_on, on the same pod (not reusing any earlier run'
 ## Read this before the numbers below
 
 **We cannot currently make a confident accuracy claim between mtp_on and the other two
-conditions.** A test-infrastructure failure mode (`test_timeout` -- the sandbox's test
+conditions.** A test-infrastructure failure mode (`test_timeout`: the sandbox's test
 step running past its 60s budget, unrelated to the LLM) occurred far more often in
 dflash2_on and dspark_on than in mtp_on (2 vs. 22 vs. 31 trials out of 150), and its
 rate rises monotonically with how late a condition ran on the shared pod, not with task
 difficulty. One concrete case checked directly: the *easiest* task in the whole set
-(`fix-permissions`, a one-line `chmod +x` fix) failed this way under dflash2_on -- the
+(`fix-permissions`, a one-line `chmod +x` fix) failed this way under dflash2_on. The
 agent's solution was completely correct, but the test container's `apt-get update`
 stalled on package-mirror congestion and blew the 60s budget. If every "excess"
 `test_timeout` trial beyond mtp_on's baseline rate would otherwise have resolved
@@ -28,7 +28,7 @@ dflash2_on's true resolved rate could be as high as 44.7% and dspark_on's as hig
 45.3% -- both within a couple of points of mtp_on's 47.3%, i.e. **the confound's upper
 bound nearly closes the entire measured accuracy gap.** The throughput/wall-clock/draft-
 acceptance numbers below are not affected by this (they come from vLLM's own request
-metrics, not test execution) and can be trusted as reported. The accuracy comparison specifically cannot be trusted at face value -- **this has now
+metrics, not test execution) and can be trusted as reported. The accuracy comparison specifically cannot yet be reliably confirmed. **this has now
 been tested with a fresh-pod rerun of both alternative conditions (see "Fresh-pod
 rerun" below): pod-age was ruled out as the cause, and the accuracy comparison still
 cannot be made with confidence for either dflash2_on or dspark_on.**
@@ -69,7 +69,7 @@ was found for the DSpark checkpoint used here at all.
 These published benchmarks are short, templated, comparatively low-entropy
 single-turn-or-few-turn completions (a proof, a function body, a chat reply). Agentic
 rollouts under terminal-bench are long multi-turn conversations dense with shell
-commands, file paths, compiler/test output, and strict tool-call JSON -- a token
+commands, file paths, compiler/test output, and strict tool-call JSON, which is a token
 distribution these draft models were never trained or tuned against. The acceptance gap
 measured here (86.3% MTP vs. 61.6% DFlash2 vs. 57.5% DSpark) is consistent with that
 domain mismatch and is **not** affected by the test_timeout confound above (draft
@@ -80,7 +80,7 @@ DFlash2 alone): **speculative-decoding methods whose published gains come from
 math/single-function-code benchmarks should not be assumed to transfer those gains to
 agentic RL rollout workloads**, and any team evaluating a new speculative-decoding
 method for agentic rollouts should validate acceptance rate on the actual target
-workload rather than trusting the paper's numbers.
+workload rather than blindly trusting the paper's results.
 
 ## The test_timeout confound, in detail
 
@@ -91,7 +91,7 @@ workload rather than trusting the paper's numbers.
 | dspark_on | 3rd, ~4.5h into pod life (07:39-09:02Z) | **31** |
 
 This fires during sandbox *test execution*, strictly after the agent has already
-submitted -- no LLM call is involved at that point, so it cannot be a property of
+submitted. No LLM call is involved at that point, so it cannot be a property of
 DFlash2 or DSpark's output quality. The rate rises monotonically with how late a
 condition ran on the shared pod, which is the signature of accumulating host/Docker
 resource pressure (sandbox-container churn, disk/cgroup buildup, or transient
@@ -101,7 +101,7 @@ package-mirror congestion) over a ~6.4h pod lifetime running three back-to-back
 Directly verified rather than assumed: pulled the trajectory for `fix-permissions`
 (the single easiest task in the set) under dflash2_on, which hit `test_timeout`. The
 agent's fix was completely correct (found the missing execute bit, applied `chmod
-+x`, verified the script ran, declared done) -- the test step itself failed because
++x`, verified the script ran, declared done). The test step itself failed because
 `apt-get update` inside the test container stalled at 67% package-index download for
 47+ seconds, exceeding the 60s test budget. Nothing about this is attributable to the
 model or the speculative-decoding method.
@@ -137,10 +137,10 @@ trials, clean exit (`RUN_STATUS: ok`) on both.**
 | dflash2_on | 22/150 (14.7%) | **28/150 (18.7%)** | 2/150 (1.3%) |
 | dspark_on | 31/150 (20.7%) | **29/150 (19.3%)** | 2/150 (1.3%) |
 
-**Neither condition dropped back toward mtp_on's baseline -- dflash2_on's rate went
-up slightly on the fresh pod, dspark_on's stayed essentially flat. Pod-age is
+**Neither condition dropped back toward mtp_on's baseline. dflash2_on's rate went
+up slightly on the fresh pod; dspark_on's stayed essentially flat. Pod-age is
 conclusively ruled out as the mechanism for both conditions.** Per how this result is
-meant to be read: this is not a partial or "mostly" confirmation -- it is a clean
+meant to be read: this is not a partial or "mostly" confirmation. Rather, it is a clean
 non-confirmation for both dflash2_on and dspark_on individually, and is reported as
 such rather than treated as having settled the accuracy question.
 
@@ -155,7 +155,7 @@ mechanism, which would be expected to differ between the two methods if it were 
 cause.
 
 **Task clustering by run time is the strongest lead.** `test_timeout` is not spread
-evenly across the task set -- it concentrates on a specific handful of
+evenly across the task set. It concentrates on a specific handful of
 network/compile-heavy tasks. Cross-referencing all four eval runs collected across
 this investigation (mtp_on, the original aging-pod dflash2_on run, and both fresh
 reruns) shows a sharp, consistent split by *when* each run happened, not by which pod
@@ -171,23 +171,23 @@ or which draft method:
 | prove-plus-comm | 0/3 | 3/3 | 3/3 | -- |
 | build-initramfs-qemu (the one exception) | 2/3 | -- | -- | 2/3 |
 
-Every run that started later than mtp_on's -- the original aging-pod dflash2_on run
-*and* both brand-new fresh-pod reruns -- hits the same tasks, regardless of pod
+Every run that started later than mtp_on's, such as the original aging-pod dflash2_on run
+*and* both brand-new fresh-pod reruns, hits the same tasks, regardless of pod
 freshness or draft method. mtp_on, which happened to run first (earliest in the day),
 is clean on all of them, with one exception: `build-initramfs-qemu` shows mild
 elevation (2/3) even on mtp_on's own clean baseline, suggesting that one task is
 genuinely borderline-tight on the 60s budget on its own merits, independent of the
 pattern below.
 
-**The leading hypothesis -- stated plainly as a hypothesis, not a confirmed cause.**
-Something external and correlated with time-of-day -- most plausibly
+**The leading hypothesis, stated plainly as a hypothesis, not a confirmed cause:**
+Something external and correlated with time-of-day, most plausibly
 network/registry/package-mirror congestion that varies through the day and happens to
 affect exactly the tasks that lean on package installs, downloads, or compilation
-during test verification -- is the best-supported explanation for this pattern. This
+during test verification. So far, this is the best-supported explanation for this pattern. This
 is inferred from the run-time correlation combined with directly ruling out the two
 alternative mechanisms above (pod-age and CPU contention); it has **not** been
 independently confirmed, because registry/mirror response times during the affected
-run windows cannot be checked retroactively -- there is no log of that to point to
+run windows cannot be checked retroactively. In other words, there is no log of that to point to
 after the fact. Anyone re-running this comparison should log registry/mirror latency
 alongside the eval if they want to close this gap definitively.
 
@@ -204,7 +204,7 @@ showed up in the final summary stats and is worth recording:
 | Draft acceptance | 61.6% | 61.6% | 57.5% | 58.8% |
 
 Wall clock nearly doubled and measured throughput dropped ~40% on both fresh pods
-relative to the original runs -- this is not a second, separate confound. It's the
+relative to the original runs. Note that this is not a second, separate confound. It's the
 same underlying mechanism showing up in a different metric: time spent stalled in
 `test_timeout`-bound trials (and the docker-build congestion observed live during the
 rerun, e.g. `crack-7z-hash`/`polyglot-rust-c` builds that sat for ~30 min doing almost
@@ -212,17 +212,17 @@ no CPU work before completing) eats wall-clock time without producing tokens,
 mechanically dragging down the tokens/sec figure. It's consistent with, and adds
 weight to, the time-correlated-congestion hypothesis above rather than pointing to
 anything new. Resolved-trial counts and pass@3 moved only modestly between original
-and rerun for both conditions -- neither improved to anywhere near mtp_on's level,
+and rerun for both conditions. Neither improved to anywhere near mtp_on's level,
 consistent with the test_timeout rate staying elevated rather than resolving.
 
 **What this means for the accuracy comparison.** It still cannot be made with
-confidence -- but we can now say precisely *why*, rather than leaving "pod age" as an
+confidence, but we can now say precisely *why*, rather than leaving "pod age" as an
 open, untested question, and this is now backed by a completed, not partial,
 fresh-pod rerun. mtp_on happened to draw the earliest, cleanest time slot in this
 investigation's run order. Its clean 47.3% resolved rate is not evidence that MTP is
 the intrinsically more accurate method here; it is at least partly a product of *when*
 it happened to run. dflash2_on and dspark_on were structurally disadvantaged by
-running later -- on the original aging pod, and again on brand-new fresh pods -- in a
+running later on the original aging pod, and again on brand-new fresh pods in a
 way that has nothing to do with either method's actual capability. This holds
 individually for both conditions; it is not a case of one condition confirming and the
 other not.
